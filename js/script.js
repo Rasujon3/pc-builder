@@ -16,6 +16,7 @@ function onClickAndUpdatePrice(clickId, itemId, price) {
 
     const total = document.getElementById("total-price");
     total.innerText = totalPrice;
+    document.getElementById(clickId).style.backgroundColor = "cornflowerblue";
   });
 }
 
@@ -31,17 +32,26 @@ const fakeCode = "pHero";
 document.getElementById("apply-btn").addEventListener("click", function () {
   const codeInput = document.getElementById("promo-input");
   let code = codeInput.value;
-  if (code === fakeCode) {
+  console.log("code", code);
+  console.log("Coupon code", fakeCode);
+  if (code == fakeCode) {
     const totalText = document.getElementById("total-price");
     let totalPrice = parseFloat(totalText.innerText);
-
+    console.log("i am insilde if");
     const discount = (totalPrice * 20) / 100;
 
     totalPrice = totalPrice - discount;
 
     totalText.innerText = totalPrice;
+
+    document.getElementById("applied-text").style.display = "block !important";
+
+    // clear input
     codeInput.value = "";
   } else {
+    document.getElementById("error-text").style.display = "block !important";
     alert("False Coupon");
+    // clear input
+    codeInput.value = "";
   }
 });
