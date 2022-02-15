@@ -26,3 +26,22 @@ onClickAndUpdatePrice("ssd2", "storage-cost", 100);
 onClickAndUpdatePrice("ssd3", "storage-cost", 200);
 onClickAndUpdatePrice("free-delivery", "delivery-cost", 0);
 onClickAndUpdatePrice("paid-delivery", "delivery-cost", 20);
+
+const fakeCode = "pHero";
+document.getElementById("apply-btn").addEventListener("click", function () {
+  const codeInput = document.getElementById("promo-input");
+  let code = codeInput.value;
+  if (code === fakeCode) {
+    const totalText = document.getElementById("total-price");
+    let totalPrice = parseFloat(totalText.innerText);
+
+    const discount = (totalPrice * 20) / 100;
+
+    totalPrice = totalPrice - discount;
+
+    totalText.innerText = totalPrice;
+    codeInput.value = "";
+  } else {
+    alert("False Coupon");
+  }
+});
